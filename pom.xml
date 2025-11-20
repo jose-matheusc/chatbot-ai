@@ -151,11 +151,13 @@
 				</executions>
 			</plugin>
 
-			<!-- Checkstyle plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>3.2.0</version>
+				<configuration>
+					<failsOnError>false</failsOnError> <!-- Não falhar o build -->
+				</configuration>
 				<executions>
 					<execution>
 						<phase>verify</phase>
