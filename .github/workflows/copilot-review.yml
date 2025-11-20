@@ -4,19 +4,19 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-permissions:
-  contents: read
-  pull-requests: write
-
 jobs:
   review:
     runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      contents: read
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Copilot Review
-        uses: github/assistant-review-action@v1
+      - name: Copilot review
+        uses: github/copilot-review-action@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
