@@ -1,4 +1,4 @@
-package com.async.pdf.config;
+package com.chatbot.ai.config.filter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

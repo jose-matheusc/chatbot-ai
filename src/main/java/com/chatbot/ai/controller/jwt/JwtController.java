@@ -1,7 +1,7 @@
-package com.async.pdf.controller.jwt;
+package com.chatbot.ai.controller.jwt;
 
-import com.async.pdf.dtos.TokenPresenterDto;
-import com.async.pdf.service.jwt.JwtService;
+import com.chatbot.ai.dtos.TokenPresenterDto;
+import com.chatbot.ai.service.jwt.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

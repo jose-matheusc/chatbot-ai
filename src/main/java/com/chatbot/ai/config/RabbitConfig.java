@@ -1,4 +1,4 @@
-package com.async.pdf.config;
+package com.chatbot.ai.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;

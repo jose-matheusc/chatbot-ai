@@ -1,6 +1,6 @@
-package com.async.pdf.service;
+package com.chatbot.ai.service;
 
-import com.async.pdf.config.RabbitConfig;
+import com.chatbot.ai.config.RabbitConfig;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 

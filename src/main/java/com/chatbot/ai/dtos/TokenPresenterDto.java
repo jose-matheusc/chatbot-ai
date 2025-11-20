@@ -1,4 +1,4 @@
-package com.async.pdf.dtos;
+package com.chatbot.ai.dtos;
 
 
 import java.util.List;

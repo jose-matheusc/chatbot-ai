@@ -1,6 +1,6 @@
-package com.async.pdf.controller;
+package com.chatbot.ai.controller;
 
-import com.async.pdf.service.PedidoProducer;
+import com.chatbot.ai.service.PedidoProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

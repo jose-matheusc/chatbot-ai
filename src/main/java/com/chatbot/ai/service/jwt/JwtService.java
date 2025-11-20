@@ -1,6 +1,6 @@
-package com.async.pdf.service.jwt;
+package com.chatbot.ai.service.jwt;
 
-import com.async.pdf.dtos.TokenPresenterDto;
+import com.chatbot.ai.dtos.TokenPresenterDto;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;

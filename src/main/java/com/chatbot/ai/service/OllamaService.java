@@ -1,4 +1,4 @@
-package com.async.pdf.service;
+package com.chatbot.ai.service;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Autowired;

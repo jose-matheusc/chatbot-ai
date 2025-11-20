@@ -1,4 +1,4 @@
-package com.async.pdf;
+package com.chatbot.ai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
