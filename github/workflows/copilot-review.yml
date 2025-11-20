@@ -2,7 +2,7 @@ name: Copilot PR Review
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 jobs:
   review:
@@ -13,7 +13,7 @@ jobs:
       contents: read
 
     steps:
-      - name: GitHub Copilot review
+      - name: Copilot review
         uses: github/copilot-review-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
