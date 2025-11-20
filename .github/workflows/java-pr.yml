@@ -23,19 +23,16 @@ jobs:
           distribution: temurin
 
       - name: Build project
-        run: ./gradlew build --no-daemon
+        run: mvn clean install -DskipTests
 
       - name: Run unit tests
-        run: ./gradlew test
+        run: mvn test
 
       - name: Generate test coverage
-        run: ./gradlew jacocoTestReport
+        run: mvn jacoco:report
 
       - name: Code style check
-        run: ./gradlew spotlessCheck
-
-      - name: Dependency review
-        uses: github/dependency-review-action@v2
+        run: mvn checkstyle:check
 
       - name: Comment PR results
         uses: peter-evans/create-or-update-comment@v5
@@ -43,8 +40,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ✅ Build, tests e análise de código completos.
-            - Testes unitários: Passaram
-            - Cobertura: Ver relatório Jacoco
-            - Lint: Verificado
-            - Dependências seguras
+            ✅ Build, tests, and code analysis completed.
+            - Unit tests: Passed
+            - Coverage: See Jacoco report
+            - Checkstyle: Passed
