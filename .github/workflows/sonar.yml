@@ -10,6 +10,9 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
 
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -35,3 +38,4 @@ jobs:
             -Dsonar.projectKey=SEU_PROJECT_KEY
             -Dsonar.organization=SEU_ORG_KEY
             -Dsonar.java.binaries=**/target/classes
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
