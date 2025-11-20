@@ -20,4 +20,5 @@ public class IAController {
     public String perguntar(@RequestParam String q) {
         return iaService.perguntar(q);
     }
+
 }
