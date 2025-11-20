@@ -13,7 +13,10 @@ jobs:
       contents: read
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Copilot review
-        uses: github/copilot-review-action@v1
+        uses: github/assistant-review-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

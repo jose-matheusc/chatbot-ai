@@ -24,7 +24,7 @@ class PdfApplicationTests {
 		String result = service.perguntar("hello");
 
 		// Assert
-		assertEquals("generated-respons", result);
+		assertEquals("generated-response", result);
 	}
 
 	@Test
