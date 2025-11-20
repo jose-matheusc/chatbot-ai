@@ -1,25 +1,22 @@
-name: PR Code Review
+name: Code Review
 
 on:
   pull_request:
-    branches: [ "main", "master" ]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
-  build:
+  review:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Build with Maven
-        run: mvn -B clean verify
-
-      - name: Run Checkstyle
-        run: mvn -B checkstyle:check
+      - name: Run Code Review with AI
+        uses: ancin/happygitbot@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
