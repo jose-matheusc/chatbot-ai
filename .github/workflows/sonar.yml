@@ -45,4 +45,4 @@ jobs:
           args: >
             -Dsonar.projectKey=jose-matheusc_chatbot-ai
             -Dsonar.organization=jose-matheusc
-            -Dsonar.java.binaries=**/target/classes
+            -Dsonar.java.binaries=target/classes
