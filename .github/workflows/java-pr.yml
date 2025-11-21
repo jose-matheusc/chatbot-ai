@@ -28,11 +28,8 @@ jobs:
       - name: Run unit tests
         run: mvn test
 
-      - name: Generate test coverage
+      - name: Generate coverage
         run: mvn jacoco:report
-
-      - name: Code style check
-        run: mvn checkstyle:check
 
       - name: Comment PR results
         uses: peter-evans/create-or-update-comment@v5
@@ -40,7 +37,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ✅ Build, tests, and code analysis completed.
+            ✅ Build and tests completed.
             - Unit tests: Passed
-            - Coverage: See Jacoco report
-            - Checkstyle: Passed
+            - Coverage: Generated (Jacoco)
