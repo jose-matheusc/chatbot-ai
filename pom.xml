@@ -150,23 +150,25 @@
 					</execution>
 				</executions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
-					<failsOnError>false</failsOnError> <!-- Não falhar o build -->
+					<failsOnError>false</failsOnError>
+					<failOnViolation>false</failOnViolation>
+					<violationSeverity>ignore</violationSeverity>
 				</configuration>
 				<executions>
 					<execution>
-						<phase>verify</phase>
+						<phase>validate</phase>
 						<goals>
-							<goal>checkstyle</goal>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
