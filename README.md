@@ -69,4 +69,4 @@ mvn test
 This project is licensed under the MIT License.
 
 ## Contact
-For questions or support, contact the maintainer at: <your-email>
+For questions or support, contact the maintainer at: <josematheus.profissional@gmail.com>
