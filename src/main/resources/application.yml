@@ -4,6 +4,10 @@ spring:
     port: {DB_PORT_RABBITMQ}
     username: {DB_USER_RABBITMQ}
     password: {DB_PASS_RABBITMQ}
+    mvc:
+      apiversion:
+        use:
+          header: API-Version
 jwt:
   secret: {JWT_SECRET}
   expiration-ms: {JWT_EXPIRATION_MS}
