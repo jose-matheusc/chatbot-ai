@@ -15,3 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Run Code Review with AI
+        uses: github/assistant-review-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
