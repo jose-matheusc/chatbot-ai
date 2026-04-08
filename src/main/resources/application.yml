@@ -1,9 +1,13 @@
 spring:
   rabbitmq:
-    host: {DB_HOST_RABBITMQ}
-    port: {DB_PORT_RABBITMQ}
-    username: {DB_USER_RABBITMQ}
-    password: {DB_PASS_RABBITMQ}
+    host: ${DB_HOST_RABBITMQ:localhost}
+    port: ${DB_PORT_RABBITMQ:5672}
+    username: ${DB_USER_RABBITMQ:user}
+    password: ${DB_PASS_RABBITMQ:password}
+  mvc:
+    apiversion:
+      use:
+        header: API-Version
 jwt:
-  secret: {JWT_SECRET}
-  expiration-ms: {JWT_EXPIRATION_MS}
+  secret: ${JWT_SECRET:change_me}
+  expiration-ms: ${JWT_EXPIRATION_MS:3600000}

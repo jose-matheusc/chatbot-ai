@@ -1,16 +1,19 @@
-# PDF Async Service
+# Chatbot AI Service
 
-This project is a Spring Boot application for asynchronous PDF processing and order management, using RabbitMQ for messaging and JWT for authentication.
+This project is a Spring Boot application for processing questions via AI, using Langchain4j with Ollama, RabbitMQ for messaging, and JWT for authentication.
 
 ## Features
-- Asynchronous order processing via RabbitMQ
-- PDF generation and handling
-- JWT-based authentication and authorization
-- RESTful API endpoints
+- REST endpoint for AI questions
+- Integration with Ollama model (Langchain4j)
+- Flexible security configuration (permitAll)
+- RabbitMQ and JWT configuration via environment variables
+- Automated tests for the AI service
 
 ## Technologies
 - Java 17+
 - Spring Boot
+- Langchain4j
+- Ollama
 - RabbitMQ
 - JWT (JSON Web Token)
 - Maven
@@ -20,38 +23,43 @@ This project is a Spring Boot application for asynchronous PDF processing and or
 ### Prerequisites
 - Java 17 or higher
 - Maven
-- Docker (for RabbitMQ)
+- Docker (for RabbitMQ and Ollama)
 
 ### Setup
 1. Clone the repository:
    ```
    git clone <your-repo-url>
    ```
-2. Start RabbitMQ using Docker Compose:
+2. Start RabbitMQ with Docker Compose:
    ```
    docker-compose up -d
    ```
-3. Build the project:
+3. Start Ollama locally:
+   ```
+   ollama serve
+   ollama pull qwen2.5:0.5b
+   ```
+4. Set environment variables for RabbitMQ and JWT as specified in `src/main/resources/application.yml`.
+5. Build the project:
    ```
    mvn clean install
    ```
-4. Run the application:
+6. Run the application:
    ```
    mvn spring-boot:run
    ```
 
-## API Endpoints
+## Endpoints
 
-### Order
-- `POST /orders/public/send` - Send a new order for processing
-
-### Authentication
-- JWT endpoints for token generation and validation (see JwtController)
+### AI
+- `GET /public/ia/perguntar?q=text` - Sends a question to the AI model
 
 ## Configuration
-Application settings can be found in `src/main/resources/application.yml` and `application-local.yml`.
+- Configuration is in `src/main/resources/application.yml`.
+- Set RabbitMQ and JWT via environment variables.
+- The AI model is configured in `LangchainConfig.java` to use local Ollama.
 
-## Testing
+## Tests
 Run tests with:
 ```
 mvn test
@@ -61,5 +69,4 @@ mvn test
 This project is licensed under the MIT License.
 
 ## Contact
-For questions or support, contact the maintainer at: <your-email>
-
+For questions or support, contact the maintainer at: <josematheus.profissional@gmail.com>
