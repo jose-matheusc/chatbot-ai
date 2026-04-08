@@ -16,9 +16,9 @@ public class IAController {
         this.iaService = iaService;
     }
 
-    @GetMapping("/perguntar")
-    public String perguntar(@RequestParam String q) {
-        return iaService.perguntar(q);
+    @GetMapping("/ask")
+    public String ask(@RequestParam String q) {
+        return iaService.ask(q);
     }
 
 }

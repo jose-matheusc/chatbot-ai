@@ -12,7 +12,7 @@ public class IAService {
         this.model = model;
     }
 
-    public String perguntar(String texto) {
-        return model.generate(texto);
+    public String ask(String text) {
+        return model.generate(text);
     }
 }
