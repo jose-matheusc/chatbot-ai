@@ -82,4 +82,3 @@ jobs:
             - One or more Playwright tests failed
             - Check the logs for details: [View CI Logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
             - Test results: See artifacts
-
