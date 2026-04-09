@@ -14,8 +14,8 @@ public class ChatController {
     }
 
     @PostMapping("/train")
-    public String train(@RequestBody String text) {
-        return service.addDocument(text);
+    public String train() {
+        return service.addDocument();
     }
 
     @GetMapping

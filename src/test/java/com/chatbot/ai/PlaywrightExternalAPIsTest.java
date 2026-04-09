@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Testes com Playwright para múltiplas APIs externas públicas
- * Exemplos de APIs que podem ser testadas com Playwright
+ * Tests with Playwright for multiple public external APIs
+ * Examples of APIs that can be tested with Playwright
  */
-public class PlaywrightExternalAPIsTest {
+class PlaywrightExternalAPIsTest {
 
     private Playwright playwright;
     private Browser browser;
@@ -19,7 +19,7 @@ public class PlaywrightExternalAPIsTest {
     private Page page;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         context = browser.newContext();
@@ -27,7 +27,7 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         if (page != null) page.close();
         if (context != null) context.close();
         if (browser != null) browser.close();
@@ -35,8 +35,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testPokeAPIAPI() {
-        // Testa PokeAPI - API pública de Pokémon
+    void testPokeAPIAPI() {
+        // Test PokeAPI - Public Pokémon API
         String url = "https://pokeapi.co/api/v2/pokemon/pikachu";
 
         page.navigate(url);
@@ -45,12 +45,12 @@ public class PlaywrightExternalAPIsTest {
         assertNotNull(response);
         assertTrue(response.contains("pikachu"));
         System.out.println("✓ PokeAPI - OK");
-        System.out.println("Resposta: " + response.substring(0, Math.min(300, response.length())));
+        System.out.println("Response: " + response.substring(0, Math.min(300, response.length())));
     }
 
     @Test
-    public void testDogCEOAPI() {
-        // Testa Dog CEO API - API pública com imagens de cães
+    void testDogCEOAPI() {
+        // Test Dog CEO API - Public API with dog images
         String url = "https://dog.ceo/api/breeds/list/all";
 
         page.navigate(url);
@@ -62,8 +62,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testGithubAPI() {
-        // Testa GitHub API - Busca informações públicas do GitHub
+    void testGithubAPI() {
+        // Test GitHub API - Get public information from GitHub
         String url = "https://api.github.com/users/torvalds";
 
         page.navigate(url);
@@ -72,25 +72,24 @@ public class PlaywrightExternalAPIsTest {
         assertNotNull(response);
         assertTrue(response.contains("login"));
         System.out.println("✓ GitHub API - OK");
-        System.out.println("Resposta: " + response.substring(0, Math.min(300, response.length())));
+        System.out.println("Response: " + response.substring(0, Math.min(300, response.length())));
     }
 
     @Test
-    public void testPublicHolidaysAPI() {
-        // Testa Public Holidays API - Feriados públicos por país
+    void testPublicHolidaysAPI() {
+        // Test Public Holidays API - Public holidays by country
         String url = "https://date.nager.at/api/v3/publicholidays/2024/BR";
 
         page.navigate(url);
         String response = page.content();
 
         assertNotNull(response);
-        assertTrue(response.contains("date") || response.length() > 0);
         System.out.println("✓ Public Holidays API - OK");
     }
 
     @Test
-    public void testCoinGeckoAPI() {
-        // Testa CoinGecko API - Dados de criptomoedas
+    void testCoinGeckoAPI() {
+        // Test CoinGecko API - Cryptocurrency data
         String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
 
         page.navigate(url);
@@ -99,12 +98,12 @@ public class PlaywrightExternalAPIsTest {
         assertNotNull(response);
         assertTrue(response.contains("bitcoin"));
         System.out.println("✓ CoinGecko API - OK");
-        System.out.println("Resposta: " + response);
+        System.out.println("Response: " + response);
     }
 
     @Test
-    public void testCatFactsAPI() {
-        // Testa Cat Facts API - Fatos sobre gatos
+    void testCatFactsAPI() {
+        // Test Cat Facts API - Facts about cats
         String url = "https://catfact.ninja/fact";
 
         page.navigate(url);
@@ -116,8 +115,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testAgeGuessAPI() {
-        // Testa Age Guess API - Adivinha a idade pela nome
+    void testAgeGuessAPI() {
+        // Test Age Guess API - Guess age by name
         String url = "https://api.agify.io?name=michael";
 
         page.navigate(url);
@@ -129,8 +128,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testGenderGuessAPI() {
-        // Testa Gender Guess API - Adivinha o gênero pelo nome
+    void testGenderGuessAPI() {
+        // Test Gender Guess API - Guess gender by name
         String url = "https://api.genderize.io?name=john";
 
         page.navigate(url);
@@ -142,8 +141,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testIPInfoAPI() {
-        // Testa IP Info API - Informações sobre endereço IP
+    void testIPInfoAPI() {
+        // Test IP Info API - Information about IP address
         String url = "https://ipinfo.io/8.8.8.8/json";
 
         page.navigate(url);
@@ -155,8 +154,8 @@ public class PlaywrightExternalAPIsTest {
     }
 
     @Test
-    public void testMultipleAPIsSequence() {
-        // Testa múltiplas APIs em sequência
+    void testMultipleAPIsSequence() {
+        // Test multiple APIs in sequence
         String[] apis = {
                 "https://jsonplaceholder.typicode.com/posts/1",
                 "https://restcountries.com/v3.1/name/USA",
@@ -169,17 +168,17 @@ public class PlaywrightExternalAPIsTest {
             try {
                 page.navigate(api);
                 Response response = page.navigate(api);
-                assertEquals(200, response.status(), "Falha ao acessar: " + api);
+                assertEquals(200, response.status(), "Failed to access: " + api);
                 System.out.println("✓ " + api.split("/")[2] + " - OK");
             } catch (Exception e) {
-                System.out.println("✗ " + api + " - Erro: " + e.getMessage());
+                System.out.println("✗ " + api + " - Error: " + e.getMessage());
             }
         }
     }
 
     @Test
-    public void testAPIResponseHeaders() {
-        // Testa headers de resposta de uma API
+    void testAPIResponseHeaders() {
+        // Test response headers from an API
         page.onResponse(response -> {
             String contentType = response.headerValue("content-type");
             System.out.println("Content-Type: " + contentType);

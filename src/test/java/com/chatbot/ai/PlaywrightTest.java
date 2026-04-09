@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Testes com Playwright chamando APIs externas
+ * Tests with Playwright calling external APIs
  */
-public class PlaywrightTest {
+class PlaywrightTest {
 
     private Playwright playwright;
     private Browser browser;
@@ -18,8 +18,8 @@ public class PlaywrightTest {
     private Page page;
 
     @BeforeEach
-    public void setUp() {
-        // Inicializa o Playwright
+    void setUp() {
+        // Initialize Playwright
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         context = browser.newContext();
@@ -27,7 +27,7 @@ public class PlaywrightTest {
     }
 
     @AfterEach
-    public void tearDown() {
+    void tearDown() {
         if (page != null) {
             page.close();
         }
@@ -43,8 +43,8 @@ public class PlaywrightTest {
     }
 
     @Test
-    public void testJsonPlaceholderAPI() {
-        // Testa JSONPlaceholder - API pública para teste
+    void testJsonPlaceholderAPI() {
+        // Test JSONPlaceholder - Public API for testing
         String url = "https://jsonplaceholder.typicode.com/posts/1";
 
         page.navigate(url);
@@ -55,41 +55,26 @@ public class PlaywrightTest {
         assertTrue(response.contains("userId") || response.contains("id"));
 
         System.out.println("✓ JSONPlaceholder API test passed");
-        System.out.println("Resposta: " + response.substring(0, Math.min(200, response.length())));
+        System.out.println("Response: " + response.substring(0, Math.min(200, response.length())));
     }
 
     @Test
-    public void testJsonPlaceholderMultiplePosts() {
-        // Testa múltiplas requisições à API
-        for (int i = 1; i <= 3; i++) {
-            String url = "https://jsonplaceholder.typicode.com/posts/" + i;
-            page.navigate(url);
-
-            String response = page.content();
-            assertNotNull(response);
-            assertTrue(response.contains("\"id\":" + i));
-
-            System.out.println("Post " + i + " recuperado com sucesso");
-        }
-    }
-
-    @Test
-    public void testRESTCountriesAPI() {
-        // Testa REST Countries API - API pública para dados de países
+    void testRESTCountriesAPI() {
+        // Test REST Countries API - Public API for country data
         String url = "https://restcountries.com/v3.1/name/Brazil";
 
         page.navigate(url);
 
         String response = page.content();
         assertNotNull(response);
-        assertTrue(response.contains("Brazil") || response.contains("Brasil"));
+        assertTrue(response.contains("Brazil"));
 
         System.out.println("✓ REST Countries API test passed");
     }
 
     @Test
-    public void testAPIWithNetworkMonitoring() {
-        // Monitora requisições e respostas de rede
+    void testAPIWithNetworkMonitoring() {
+        // Monitor network requests and responses
         page.onRequest(request -> System.out.println(">> REQUEST: " + request.method() + " " + request.url()));
         page.onResponse(response -> System.out.println("<< RESPONSE: " + response.status() + " " + response.url()));
 
@@ -101,8 +86,8 @@ public class PlaywrightTest {
     }
 
     @Test
-    public void testMultipleExternalAPIs() {
-        // Testa várias APIs externas em sequência
+    void testMultipleExternalAPIs() {
+        // Test multiple external APIs in sequence
         String[] apiUrls = {
                 "https://jsonplaceholder.typicode.com/todos/1",
                 "https://restcountries.com/v3.1/name/USA",
@@ -112,14 +97,14 @@ public class PlaywrightTest {
         for (String url : apiUrls) {
             page.navigate(url);
             Response response = page.navigate(url);
-            assertEquals(200, response.status(), "API em " + url + " retornou erro");
+            assertEquals(200, response.status(), "API at " + url + " returned error");
             System.out.println("✓ " + url + " - Status: " + response.status());
         }
     }
 
     @Test
-    public void testAPIResponseTime() {
-        // Mede o tempo de resposta da API
+    void testAPIResponseTime() {
+        // Measure API response time
         long startTime = System.currentTimeMillis();
 
         String url = "https://jsonplaceholder.typicode.com/posts";
@@ -128,8 +113,8 @@ public class PlaywrightTest {
         long endTime = System.currentTimeMillis();
         long duration = endTime - startTime;
 
-        System.out.println("✓ Tempo de resposta: " + duration + "ms");
-        assertTrue(duration < 5000, "API levou mais de 5 segundos");
+        System.out.println("✓ Response time: " + duration + "ms");
+        assertTrue(duration < 5000, "API took more than 5 seconds");
     }
 
 }

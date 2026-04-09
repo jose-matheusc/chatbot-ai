@@ -16,14 +16,9 @@ public class IAController {
         this.iaService = iaService;
     }
 
-    @GetMapping("/perguntar")
-    public String perguntar(@RequestParam String q) {
-        return iaService.perguntar(q);
-    }
-
-    @GetMapping(path ="/perguntar", version = "1.2")
-    public String perguntar2(@RequestParam String q) {
-        return iaService.perguntar(q);
+    @GetMapping("/ask")
+    public String ask(@RequestParam String q) {
+        return iaService.ask(q);
     }
 
 }

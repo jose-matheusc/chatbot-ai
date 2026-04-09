@@ -1,0 +1,85 @@
+name: Playwright Tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [ main, develop ]
+
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      - name: Build project
+        run: mvn clean install -DskipTests
+
+      - name: Install Playwright browsers
+        run: mvn exec:java -Dexec.mainClass="com.microsoft.playwright.CLI" -Dexec.args="install"
+
+      - name: Run Playwright tests
+        run: mvn test -Dtest=PlaywrightTest
+
+      - name: Run Playwright External APIs tests
+        run: mvn test -Dtest=PlaywrightExternalAPIsTest
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-results
+          path: target/surefire-reports/
+
+      - name: Publish test results
+        if: always()
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        with:
+          files: target/surefire-reports/*.xml
+          check_name: Playwright Test Results
+
+      - name: Comment PR on success
+        if: success() && github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ✅ **Playwright Tests Passed**
+            - All Playwright tests executed successfully
+            - Browser automation tests: Passed
+            - External API tests: Passed
+
+      - name: Comment PR on failure
+        if: failure() && github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ❌ **Playwright Tests Failed**
+            - One or more Playwright tests failed
+            - Check the logs for details: [View CI Logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
+            - Test results: See artifacts
+

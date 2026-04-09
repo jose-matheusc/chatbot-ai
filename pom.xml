@@ -3,21 +3,13 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.0.0</version>
-		<relativePath/>
-	</parent>
-
-	<groupId>com.async.pdf</groupId>
-	<artifactId>chatbot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>pdf</name>
-	<description>Demo project for Spring Boot</description>
+	<groupId>com.example</groupId>
+	<artifactId>chatbot-ai</artifactId>
+	<version>1.0.0</version>
+	<name>chatbot-ai</name>
 
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
 		<spring.boot.version>3.3.5</spring.boot.version>
 	</properties>
 
@@ -70,13 +62,19 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
 		<!-- Spring AI + Ollama -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- LangChain4j (opcional) -->
+		<!-- LangChain4j (optional) -->
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j</artifactId>
@@ -85,6 +83,13 @@
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-ollama</artifactId>
+			<version>0.36.0</version>
+		</dependency>
+
+		<!-- LangChain4j Chroma Store -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-chroma</artifactId>
 			<version>0.36.0</version>
 		</dependency>
 
@@ -112,6 +117,8 @@
 			<scope>runtime</scope>
 		</dependency>
 
+
+		<!-- Tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -122,18 +129,41 @@
 
 	<build>
 		<plugins>
-			<!-- Plugin Maven do Spring Boot -->
+			<!-- Spring Boot Maven Plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<!-- Maven Compiler Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>15</source>
-					<target>15</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
+			</plugin>
+
+			<!-- JaCoCo Code Coverage Plugin -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

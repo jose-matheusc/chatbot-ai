@@ -6,11 +6,13 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.model.ollama.OllamaEmbeddingModel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class OllamaConfig {
 
     @Bean
+    @Primary
     public ChatLanguageModel ollamaModel() {
         return OllamaChatModel.builder()
                 .baseUrl("http://localhost:11434")

@@ -11,7 +11,7 @@ public class ChatService {
     private final ChatLanguageModel model;
     private final ChromaEmbeddingStore embeddingStore;
 
-    public ChatService(@Qualifier("chatModel") ChatLanguageModel model) {
+    public ChatService(@Qualifier("ollamaModel") ChatLanguageModel model) {
         this.model = model;
         ChromaEmbeddingStore store = null;
         try {
@@ -19,27 +19,26 @@ public class ChatService {
                 .baseUrl("http://localhost:8000")
                 .collectionName("documentos")
                 .build();
-        } catch (RuntimeException e) {
-            System.err.println("Erro ao conectar ou criar coleção no Chroma: " + e.getMessage());
+        } catch (RuntimeException ignored) {
         }
         this.embeddingStore = store;
     }
 
-    public String addDocument(String text) {
-        return "Documento armazenado no vetor store! (implemente geração de embedding)";
+    public String addDocument() {
+        return "Document stored in the vector store! (implement embedding generation)";
     }
 
-    // ---------- PERGUNTAS (RAG) ---------------------
+    // ---------- QUESTIONS (RAG) ---------------------
     public String ask(String question) {
-        String context = "(implemente busca de contexto relevante)";
+        String context = "(implement search for relevant context)";
         String prompt = """
-                Você é um assistente que usa o contexto abaixo:
+                You are an assistant that uses the context below:
 
-                CONTEXTO:
+                CONTEXT:
                 %s
 
-                Pergunta: %s
-                Resposta:
+                Question: %s
+                Answer:
                 """.formatted(context, question);
         return model.generate(prompt);
     }

@@ -21,7 +21,7 @@ class PdfApplicationTests {
 		com.chatbot.ai.service.IAService service = new com.chatbot.ai.service.IAService(model);
 
 		// Act
-		String result = service.perguntar("hello");
+		String result = service.ask("hello");
 
 		// Assert
 		assertEquals("generated-response", result);
@@ -35,7 +35,7 @@ class PdfApplicationTests {
 		com.chatbot.ai.service.IAService service = new com.chatbot.ai.service.IAService(model);
 
 		// Act
-		String result = service.perguntar("");
+		String result = service.ask("");
 
 		// Assert
 		assertEquals("", result);
@@ -49,7 +49,7 @@ class PdfApplicationTests {
 		com.chatbot.ai.service.IAService service = new com.chatbot.ai.service.IAService(model);
 
 		// Act & Assert
-		RuntimeException ex = assertThrows(RuntimeException.class, () -> service.perguntar("any"));
+		RuntimeException ex = assertThrows(RuntimeException.class, () -> service.ask("any"));
 		assertEquals("model-failure", ex.getMessage());
 	}
 
