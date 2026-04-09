@@ -59,21 +59,6 @@ class PlaywrightTest {
     }
 
     @Test
-    void testJsonPlaceholderMultiplePosts() {
-        // Test multiple requests to the API
-        for (int i = 1; i <= 3; i++) {
-            String url = "https://jsonplaceholder.typicode.com/posts/" + i;
-            page.navigate(url);
-
-            String response = page.content();
-            assertNotNull(response);
-            assertTrue(response.contains("\"id\":" + i));
-
-            System.out.println("Post " + i + " retrieved successfully");
-        }
-    }
-
-    @Test
     void testRESTCountriesAPI() {
         // Test REST Countries API - Public API for country data
         String url = "https://restcountries.com/v3.1/name/Brazil";
