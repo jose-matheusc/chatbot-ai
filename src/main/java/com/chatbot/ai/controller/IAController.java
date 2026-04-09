@@ -21,9 +21,4 @@ public class IAController {
         return iaService.ask(q);
     }
 
-    @GetMapping(path ="/perguntar", version = "1.2")
-    public String perguntar2(@RequestParam String q) {
-        return iaService.perguntar(q);
-    }
-
 }

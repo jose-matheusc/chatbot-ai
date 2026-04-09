@@ -74,7 +74,7 @@
 			<artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
 		</dependency>
 
-		<!-- LangChain4j (opcional) -->
+		<!-- LangChain4j (optional) -->
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j</artifactId>
@@ -83,6 +83,13 @@
 		<dependency>
 			<groupId>dev.langchain4j</groupId>
 			<artifactId>langchain4j-ollama</artifactId>
+			<version>0.36.0</version>
+		</dependency>
+
+		<!-- LangChain4j Chroma Store -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-chroma</artifactId>
 			<version>0.36.0</version>
 		</dependency>
 
