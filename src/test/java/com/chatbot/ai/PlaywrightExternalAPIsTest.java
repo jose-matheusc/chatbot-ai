@@ -36,7 +36,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testPokeAPIAPI() {
-        // Test PokeAPI - Public Pokémon API
         String url = "https://pokeapi.co/api/v2/pokemon/pikachu";
 
         page.navigate(url);
@@ -50,7 +49,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testDogCEOAPI() {
-        // Test Dog CEO API - Public API with dog images
         String url = "https://dog.ceo/api/breeds/list/all";
 
         page.navigate(url);
@@ -63,7 +61,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testGithubAPI() {
-        // Test GitHub API - Get public information from GitHub
         String url = "https://api.github.com/users/torvalds";
 
         page.navigate(url);
@@ -77,7 +74,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testPublicHolidaysAPI() {
-        // Test Public Holidays API - Public holidays by country
         String url = "https://date.nager.at/api/v3/publicholidays/2024/BR";
 
         page.navigate(url);
@@ -89,7 +85,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testCoinGeckoAPI() {
-        // Test CoinGecko API - Cryptocurrency data
         String url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
 
         page.navigate(url);
@@ -103,7 +98,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testCatFactsAPI() {
-        // Test Cat Facts API - Facts about cats
         String url = "https://catfact.ninja/fact";
 
         page.navigate(url);
@@ -116,7 +110,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testAgeGuessAPI() {
-        // Test Age Guess API - Guess age by name
         String url = "https://api.agify.io?name=michael";
 
         page.navigate(url);
@@ -129,7 +122,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testGenderGuessAPI() {
-        // Test Gender Guess API - Guess gender by name
         String url = "https://api.genderize.io?name=john";
 
         page.navigate(url);
@@ -142,7 +134,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testIPInfoAPI() {
-        // Test IP Info API - Information about IP address
         String url = "https://ipinfo.io/8.8.8.8/json";
 
         page.navigate(url);
@@ -155,7 +146,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testMultipleAPIsSequence() {
-        // Test multiple APIs in sequence
         String[] apis = {
                 "https://jsonplaceholder.typicode.com/posts/1",
                 "https://restcountries.com/v3.1/name/USA",
@@ -178,7 +168,6 @@ class PlaywrightExternalAPIsTest {
 
     @Test
     void testAPIResponseHeaders() {
-        // Test response headers from an API
         page.onResponse(response -> {
             String contentType = response.headerValue("content-type");
             System.out.println("Content-Type: " + contentType);
